@@ -50,8 +50,38 @@ const tmp = require('tmp');
 const unpack = require('tar-pack').unpack;
 const url = require('url');
 const validateProjectName = require('validate-npm-package-name');
+const updateNotifier = require('update-notifier');
 
 const packageJson = require('./package.json');
+
+// Checks on every run, excluding the first.
+const { update } = updateNotifier({
+  pkg: packageJson,
+  updateCheckInterval: 0,
+});
+
+if (update) {
+  console.log();
+  console.error(
+    chalk.yellow(
+      `You are running \`create-react-app\` ${update.current}, which is behind the latest release (${update.latest}).\n\n` +
+        'We no longer support global installation of Create React App.'
+    )
+  );
+  console.log();
+  console.log(
+    'Please remove any global installs with one of the following commands:\n' +
+      '- npm uninstall -g create-react-app\n' +
+      '- yarn global remove create-react-app'
+  );
+  console.log();
+  console.log(
+    'The latest instructions for creating a new app can be found here:\n' +
+      'https://create-react-app.dev/docs/getting-started/'
+  );
+  console.log();
+  process.exit(1);
+}
 
 let projectName;
 
