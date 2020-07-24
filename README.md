@@ -1,3 +1,32 @@
+This is a fork of create-react-app which enables customization of PostCSS plugins (to use tailwindcss, for instance).
+
+### Usage
+
+To use this fork when creating a new app
+
+```sh
+yarn create react-app --scripts-version @twhitbeck/react-scripts
+```
+
+To switch to this fork in an existing app
+
+```sh
+yarn remove react-scripts
+yarn add @twhitbeck/react-scripts
+```
+
+You must create a `get-postcss-plugins.js` file which exports a function that returns your PostCSS plugins. The function receives the default plugins if you want to include them:
+
+```js
+module.exports = defaultPlugins => [require('tailwindcss'), ...defaultPlugins];
+```
+
+I intend to keep this fork up to date. Feel free to open an issue if you notice this repo is out of date or needs a publish for a new release.
+
+Original `create-react-app` README follows:
+
+---
+
 # Create React App [![Build Status](https://dev.azure.com/facebook/create-react-app/_apis/build/status/facebook.create-react-app?branchName=master)](https://dev.azure.com/facebook/create-react-app/_build/latest?definitionId=1&branchName=master) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/blob/master/CONTRIBUTING.md)
 
 Create React apps with no build configuration.
