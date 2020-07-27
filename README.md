@@ -15,13 +15,19 @@ yarn remove react-scripts
 yarn add @twhitbeck/react-scripts
 ```
 
+If you're usin TypeScript, you'll also need to edit `src/react-app-env.d.ts` to reference `@twhitbeck/react-scripts`.
+
+```ts
+/// <reference types="@twhitbeck/react-scripts" />
+```
+
 You must create a `get-postcss-plugins.js` file which exports a function that returns your PostCSS plugins. The function receives the default plugins if you want to include them:
 
 ```js
 module.exports = defaultPlugins => [require('tailwindcss'), ...defaultPlugins];
 ```
 
-I intend to keep this fork up to date. Feel free to open an issue if you notice this repo is out of date or needs a publish for a new release.
+I intend to keep this fork up to date. Feel free to open an issue if you notice this repo is out of date.
 
 Original `create-react-app` README follows:
 
